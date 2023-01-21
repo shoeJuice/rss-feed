@@ -17,7 +17,7 @@ describe("Searchbar", () => {
       target: { value: "foobar" },
     });
     expect(screen.getByTestId("submit-btn")).toBeEnabled();
-    expect(screen.getByTestId("clear-btn")).toBeInTheDocument();
+    expect(screen.getByTestId("clr-btn")).toBeInTheDocument();
   });
   it("Passes input value to the submit handler method", () => {
     const mockHandler = jest.fn();
@@ -31,6 +31,7 @@ describe("Searchbar", () => {
     expect(mockHandler).toHaveBeenCalledWith("foobar");
   });
   it("Clears input by clicking on the clear button", () => {
+    render(<Searchbar />)
     fireEvent.change(screen.getByTestId("search-bar"), {
       target: { value: "foobar" },
     });
@@ -39,6 +40,7 @@ describe("Searchbar", () => {
     expect(screen.getByTestId("search-bar")).toHaveValue("");
   });
   it("Disables search button for inputs consisting of only whitespace", () => {
+    render(<Searchbar />)
     expect(screen.getByTestId("search-bar")).toHaveValue("");
     fireEvent.change(screen.getByTestId("search-bar"), {
       target: { value: "        " },
@@ -47,6 +49,7 @@ describe("Searchbar", () => {
     expect(screen.getByTestId("submit-btn")).toBeDisabled();
   });
   it("Disables search for input values consisting of non-alphanumeric letters", () => {
+    render(<Searchbar />)
     expect(screen.getByTestId("search-bar")).toHaveValue("");
     fireEvent.change(screen.getByTestId("search-bar"), {
       target: { value: "🤪😁🥲" },
