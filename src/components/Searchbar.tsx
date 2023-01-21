@@ -2,11 +2,10 @@ import {
   Flex,
   Input,
   Button,
-  IconButton,
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 /**
  * Searchbar Component
