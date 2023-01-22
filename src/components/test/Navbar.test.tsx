@@ -9,6 +9,7 @@ import {
 import {routes} from '../../router'
 
 describe("Navbar", () => {
+
   it("Renders onto the DOM", () => {
     render(<Navbar />, {wrapper: MemoryRouter});
   });
@@ -33,4 +34,5 @@ describe("Navbar", () => {
     fireEvent.click(screen.getByText("Search"))
     expect(router.state.location.pathname).toEqual("/search")
   })
+  
 });

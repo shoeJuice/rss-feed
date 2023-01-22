@@ -3,19 +3,21 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { RSSProvider } from "./context/RSSContext";
 import reportWebVitals from "./reportWebVitals";
-import { routes } from "./router";
+import router from "./router";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-const router = createBrowserRouter(routes);
 root.render(
   <React.StrictMode>
-    <ChakraProvider>
-      <RouterProvider router={router} />
-    </ChakraProvider>
+    <RSSProvider>
+      <ChakraProvider>
+        <RouterProvider router={router} />
+      </ChakraProvider>
+    </RSSProvider>
   </React.StrictMode>
 );
 
