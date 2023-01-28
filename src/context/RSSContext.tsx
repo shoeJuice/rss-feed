@@ -15,30 +15,21 @@ function RSSProvider({ children }: any) {
   const [rssAddress, setRSSAddress] = useState<string>("");
 
   useEffect(() => {
-    const fileType = rssAddress.slice(-3);
-    switch (fileType) {
-      case "xml":
-        fetch("http://localhost:3020/" + rssAddress)
-          .then((res) => res.text())
-          .then((text) => {
-            console.log(`RSS Feed: ${extractFromXml(text).title}`);
-            console.log(extractFromXml(text))
-            setCurrentFeed(extractFromXml(text));
-          });
-        break;
-      case "rss":
-        fetch("http://localhost:3020/" + rssAddress, {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-          },
+    if (rssAddress != "") {
+      fetch("http://localhost:3020/" + rssAddress)
+        .then(async (res) => {
+          let text = await res.text();
+          console.log(text);
+          return text;
         })
-          .then((res) => res.text())
-          .then((text) => {
-            console.log(`RSS Feed: ${extractFromXml(text)}`);
-            console.log(extractFromXml(text));
-            setCurrentFeed(extractFromXml(text));
-          });
-        break;
+        .then((text) => {
+          console.log(`RSS Feed: ${extractFromXml(text).title}`);
+          console.log(extractFromXml(text));
+          setCurrentFeed(extractFromXml(text));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [rssAddress]);
 

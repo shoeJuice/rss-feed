@@ -21,7 +21,7 @@ const MainLayout = () => {
                 return(<div style={{padding: 3}} key={id}>
                     <h3>{entry.title}</h3>
                     <p>{entry.description}</p>
-                    <a href={entry.id}>Read More</a>
+                    <a href={entry.link}>Read More</a>
                 </div>)
             })}
         </div>
